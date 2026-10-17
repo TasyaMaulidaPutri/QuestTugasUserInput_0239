@@ -6,8 +6,12 @@
     <dimen name="card_margin_horizontal">0dp</dimen>
     <dimen name="card_margin_bottom">24dp</dimen>
     <dimen name="card_padding">20dp</dimen>
+    <dimen name="field_corner">24dp</dimen>
+    <dimen name="field_gap">12dp</dimen>
 
     <dimen name="header_visible_height">120dp</dimen>
+    <dimen name="field_text_size">14sp</dimen>
+
 
     <dimen name="card_bottom_gap">40dp</dimen>
 
