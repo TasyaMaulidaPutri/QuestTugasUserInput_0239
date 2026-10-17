@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="header_height">300dp</dimen>
+
+    <dimen name="header_visible_height">120dp</dimen>
+
+</resources>
