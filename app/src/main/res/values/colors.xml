@@ -2,5 +2,7 @@
 <resources>
    <color name="pink_primary">#E91E8C</color>
    <color name="pink_dark">#C2185B</color>
+   <color name="pink_light">#F8BBD9</color>
+   <color name="pink_background">#FCE4EC</color>
 
 </resources>
