@@ -32,3 +32,13 @@ import java.util.Locale
 private fun spResource(id: Int): TextUnit =
     with(LocalDensity.current) { dimensionResource(id).toSp() }
 
+@Composable
+private fun FieldHint(id: Int) {
+    Text(
+        text = stringResource(id),
+        fontSize = spResource(R.dimen.field_text_size),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+    )
+}
+
