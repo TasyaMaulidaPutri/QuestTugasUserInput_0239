@@ -373,6 +373,35 @@ fun FormBiodataScreen() {
         }
     }
 
+    // ---------- Date Picker ----------
+    if (showDatePicker) {
+        val datePickerState = rememberDatePickerState()
+        DatePickerDialog(
+            onDismissRequest = { showDatePicker = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    datePickerState.selectedDateMillis?.let { millis ->
+                        birthDate = SimpleDateFormat(dateFormat, Locale.getDefault()).format(Date(millis))
+                    }
+                    showDatePicker = false
+                }) {
+                    Text(stringResource(R.string.dialog_ok), color = pinkPrimary)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDatePicker = false }) {
+                    Text(stringResource(R.string.dialog_cancel), color = pinkPrimary)
+                }
+            }
+        ) {
+            DatePicker(
+                state = datePickerState,
+                colors = DatePickerDefaults.colors(
+                    selectedDayContainerColor = pinkPrimary,
+                    todayDateBorderColor = pinkPrimary,
+                    todayContentColor = pinkPrimary
+                )
+            )
         }
     }
 }
