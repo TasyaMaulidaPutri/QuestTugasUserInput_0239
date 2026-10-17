@@ -11,5 +11,6 @@
    <color name="field_border">#79747E</color>
    <color name="button_disabled">#E0E0E0</color>
    <color name="button_disabled_text">#FFFFFF</color>
-
+   <color name="dot_inactive">#80FFFFFF</color>
+   <color name="shadow_color">#40000000</color>
 </resources>
