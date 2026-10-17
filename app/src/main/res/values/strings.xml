@@ -13,5 +13,9 @@
     <string name="desc_doll_image">Gambar boneka pink</string>
     <string name="desc_pick_date">Pilih tanggal lahir</string>
     <string name="desc_dropdown">Pilih experience</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Batal</string>
+    <string name="date_format">dd/MM/yyyy</string>
+
 
 </resources>
