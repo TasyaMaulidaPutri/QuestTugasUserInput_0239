@@ -7,5 +7,8 @@
     <string name="hint_email">Email</string>
     <string name="hint_birth_date">Tgl Lahir</string>
     <string name="hint_experience">Experience</string>
+    <string name="label_skill">Pilih Skill Anda :</string>
+    <string name="btn_proceed">Proceed</string>
+    <string name="msg_success">Biodata berhasil disimpan</string>
 
 </resources>
