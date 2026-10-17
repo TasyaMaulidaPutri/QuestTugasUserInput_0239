@@ -10,5 +10,8 @@
     <string name="label_skill">Pilih Skill Anda :</string>
     <string name="btn_proceed">Proceed</string>
     <string name="msg_success">Biodata berhasil disimpan</string>
+    <string name="desc_doll_image">Gambar boneka pink</string>
+    <string name="desc_pick_date">Pilih tanggal lahir</string>
+    <string name="desc_dropdown">Pilih experience</string>
 
 </resources>
