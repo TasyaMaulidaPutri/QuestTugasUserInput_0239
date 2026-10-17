@@ -75,5 +75,24 @@ fun FormBiodataScreen() {
         }
     }
 
+    // ---------- Resources ----------
+    val pinkPrimary = colorResource(R.color.pink_primary)
+    val textPrimary = colorResource(R.color.text_primary)
+    val fieldShape = RoundedCornerShape(dimensionResource(R.dimen.field_corner))
+    val fieldTextStyle = LocalTextStyle.current.copy(fontSize = spResource(R.dimen.field_text_size))
+    val cardShape = RoundedCornerShape(
+        topStart = dimensionResource(R.dimen.card_corner),
+        topEnd = dimensionResource(R.dimen.card_corner)
+    )
+
+    val fieldColors = OutlinedTextFieldDefaults.colors(
+        focusedBorderColor = pinkPrimary,
+        unfocusedBorderColor = colorResource(R.color.field_border),
+        focusedLabelColor = pinkPrimary,
+        cursorColor = pinkPrimary,
+        focusedTextColor = textPrimary,
+        unfocusedTextColor = textPrimary
+    )
+
 
 }
