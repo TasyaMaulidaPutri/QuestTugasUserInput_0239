@@ -94,5 +94,285 @@ fun FormBiodataScreen() {
         unfocusedTextColor = textPrimary
     )
 
+    // ---------- Scaffold ----------
+    Scaffold(containerColor = colorResource(R.color.white)) { innerPadding ->
+        BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            // Doll image
+            Image(
+                painter = painterResource(R.drawable.bg_doll_pink),
+                contentDescription = stringResource(R.string.desc_doll_image),
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(dimensionResource(R.dimen.header_height))
+            )
 
+            // Dot indicator
+            Row(
+                modifier = Modifier.padding(
+                    top = dimensionResource(R.dimen.dot_padding_top),
+                    start = dimensionResource(R.dimen.dot_padding_start)
+                ),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.dot_gap))
+            ) {
+                val activeIndex = integerResource(R.integer.dot_active_index)
+                repeat(integerResource(R.integer.dot_count)) { index ->
+                    Box(
+                        modifier = Modifier
+                            .size(dimensionResource(R.dimen.dot_size))
+                            .clip(CircleShape)
+                            .background(
+                                if (index == activeIndex) pinkPrimary
+                                else colorResource(R.color.dot_inactive)
+                            )
+                    )
+                }
+            }
+
+            // Floating box above Scaffold
+            Column(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .heightIn(max = maxHeight - dimensionResource(R.dimen.header_visible_height))
+                    .padding(horizontal = dimensionResource(R.dimen.card_margin_horizontal))
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f, fill = false)
+                        .fillMaxWidth()
+                        .shadow(
+                            elevation = dimensionResource(R.dimen.card_elevation),
+                            shape = cardShape,
+                            ambientColor = colorResource(R.color.shadow_color),
+                            spotColor = colorResource(R.color.shadow_color)
+                        )
+                        .clip(cardShape)
+                        .background(colorResource(R.color.white))
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .verticalScroll(rememberScrollState())
+                            .padding(dimensionResource(R.dimen.card_padding)),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = stringResource(R.string.title_form),
+                            color = pinkPrimary,
+                            fontSize = spResource(R.dimen.title_size),
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(Modifier.height(dimensionResource(R.dimen.title_gap)))
+                        Text(
+                            text = stringResource(R.string.subtitle_form),
+                            color = colorResource(R.color.text_secondary),
+                            fontSize = spResource(R.dimen.subtitle_size),
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                        // First and last name
+                        Row(horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.field_gap))) {
+                            OutlinedTextField(
+                                value = firstName,
+                                onValueChange = { firstName = it },
+                                placeholder = { FieldHint(R.string.hint_first_name) },
+                                singleLine = true,
+                                textStyle = fieldTextStyle,
+                                shape = fieldShape,
+                                colors = fieldColors,
+                                modifier = Modifier.weight(1f)
+                            )
+                            OutlinedTextField(
+                                value = lastName,
+                                onValueChange = { lastName = it },
+                                placeholder = { FieldHint(R.string.hint_last_name) },
+                                singleLine = true,
+                                textStyle = fieldTextStyle,
+                                shape = fieldShape,
+                                colors = fieldColors,
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+
+                        Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                        // Email
+                        OutlinedTextField(
+                            value = email,
+                            onValueChange = { email = it },
+                            placeholder = { FieldHint(R.string.hint_email) },
+                            singleLine = true,
+                            textStyle = fieldTextStyle,
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                            shape = fieldShape,
+                            colors = fieldColors,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                        // Birth date and experience
+                        Row(horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.field_gap))) {
+                            OutlinedTextField(
+                                value = birthDate,
+                                onValueChange = {},
+                                readOnly = true,
+                                placeholder = { FieldHint(R.string.hint_birth_date) },
+                                trailingIcon = {
+                                    IconButton(onClick = { showDatePicker = true }) {
+                                        Icon(
+                                            painter = painterResource(R.drawable.ic_calender),
+                                            contentDescription = stringResource(R.string.desc_pick_date),
+                                            tint = textPrimary
+                                        )
+                                    }
+                                },
+                                singleLine = true,
+                                textStyle = fieldTextStyle,
+                                shape = fieldShape,
+                                colors = fieldColors,
+                                modifier = Modifier.weight(1f)
+                            )
+
+                            ExposedDropdownMenuBox(
+                                expanded = expandExperience,
+                                onExpandedChange = { expandExperience = it },
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                OutlinedTextField(
+                                    value = experience,
+                                    onValueChange = {},
+                                    readOnly = true,
+                                    placeholder = { FieldHint(R.string.hint_experience) },
+                                    trailingIcon = {
+                                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandExperience)
+                                    },
+                                    singleLine = true,
+                                    textStyle = fieldTextStyle,
+                                    shape = fieldShape,
+                                    colors = fieldColors,
+                                    modifier = Modifier.menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable)
+                                )
+                                ExposedDropdownMenu(
+                                    expanded = expandExperience,
+                                    onDismissRequest = { expandExperience = false }
+                                ) {
+                                    experienceList.forEach { item ->
+                                        DropdownMenuItem(
+                                            text = { Text(item) },
+                                            onClick = {
+                                                experience = item
+                                                expandExperience = false
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                        Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                        // Skill
+                        Text(
+                            text = stringResource(R.string.label_skill),
+                            color = textPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = spResource(R.dimen.label_size),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            skillList.forEach { skill ->
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Checkbox(
+                                        checked = skill in selectedSkills,
+                                        onCheckedChange = { checked ->
+                                            if (checked) selectedSkills.add(skill)
+                                            else selectedSkills.remove(skill)
+                                        },
+                                        colors = CheckboxDefaults.colors(
+                                            checkedColor = pinkPrimary,
+                                            uncheckedColor = textPrimary
+                                        )
+                                    )
+                                    Text(
+                                        text = skill,
+                                        color = textPrimary,
+                                        fontSize = spResource(R.dimen.skill_text_size)
+                                    )
+                                }
+                            }
+                        }
+
+                        Spacer(Modifier.height(dimensionResource(R.dimen.section_gap)))
+
+                        // Proceed button
+                        Button(
+                            onClick = { showResult = true },
+                            enabled = isFormValid,
+                            shape = RoundedCornerShape(dimensionResource(R.dimen.button_corner)),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = pinkPrimary,
+                                contentColor = colorResource(R.color.white),
+                                disabledContainerColor = colorResource(R.color.button_disabled),
+                                disabledContentColor = colorResource(R.color.button_disabled_text)
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(dimensionResource(R.dimen.button_height))
+                        ) {
+                            Text(
+                                text = stringResource(R.string.btn_proceed),
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
+
+                // Gap under the card (white area + shadow line like the reference)
+                Spacer(Modifier.height(dimensionResource(R.dimen.card_bottom_gap)))
+            }
+
+            // Summary of the filled data, floating for a few seconds
+            if (showResult) {
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(
+                            horizontal = dimensionResource(R.dimen.card_padding),
+                            vertical = dimensionResource(R.dimen.result_margin)
+                        )
+                        .fillMaxWidth()
+                        .shadow(
+                            elevation = dimensionResource(R.dimen.card_elevation),
+                            shape = fieldShape
+                        )
+                        .clip(fieldShape)
+                        .background(colorResource(R.color.pink_light))
+                        .padding(dimensionResource(R.dimen.result_padding))
+                ) {
+                    val resultSize = spResource(R.dimen.skill_text_size)
+                    Text(stringResource(R.string.result_name, firstName, lastName), color = textPrimary, fontSize = resultSize)
+                    Text(stringResource(R.string.result_email, email), color = textPrimary, fontSize = resultSize)
+                    Text(stringResource(R.string.result_birth, birthDate), color = textPrimary, fontSize = resultSize)
+                    Text(stringResource(R.string.result_experience, experience), color = textPrimary, fontSize = resultSize)
+                    Text(
+                        stringResource(R.string.result_skill, selectedSkills.joinToString(skillSeparator)),
+                        color = textPrimary,
+                        fontSize = resultSize
+                    )
+                }
+            }
+        }
+    }
+
+        }
+    }
 }
