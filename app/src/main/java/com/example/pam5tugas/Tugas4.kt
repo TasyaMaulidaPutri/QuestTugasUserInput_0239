@@ -42,3 +42,38 @@ private fun FieldHint(id: Int) {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FormBiodataScreen() {
+    // ---------- State ----------
+    var firstName by rememberSaveable { mutableStateOf("") }
+    var lastName by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var birthDate by rememberSaveable { mutableStateOf("") }
+    var experience by rememberSaveable { mutableStateOf("") }
+    var showDatePicker by rememberSaveable { mutableStateOf(false) }
+    var expandExperience by rememberSaveable { mutableStateOf(false) }
+    var showResult by rememberSaveable { mutableStateOf(false) }
+
+    val experienceList = stringArrayResource(R.array.experience_list)
+    val skillList = stringArrayResource(R.array.skill_list)
+    val selectedSkills = remember { mutableStateListOf<String>() }
+
+    val isFormValid = firstName.isNotBlank() && lastName.isNotBlank() &&
+            email.isNotBlank() && birthDate.isNotBlank() &&
+            experience.isNotBlank() && selectedSkills.isNotEmpty()
+
+    val displayDuration = integerResource(R.integer.result_display_duration).toLong()
+    val skillSeparator = stringResource(R.string.skill_separator)
+    val dateFormat = stringResource(R.string.date_format)
+
+    // Result is shown, then hidden automatically after the duration
+    LaunchedEffect(showResult) {
+        if (showResult) {
+            delay(displayDuration)
+            showResult = false
+        }
+    }
+
+
+}
