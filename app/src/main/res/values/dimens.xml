@@ -18,11 +18,16 @@
     <dimen name="skill_text_size">12sp</dimen>
     <dimen name="button_height">56dp</dimen>
     <dimen name="button_corner">20dp</dimen>
-
+    <dimen name="dot_size">8dp</dimen>
+    <dimen name="dot_gap">6dp</dimen>
+    <dimen name="dot_padding_top">16dp</dimen>
+    <dimen name="dot_padding_start">20dp</dimen>
 
     <dimen name="card_bottom_gap">40dp</dimen>
     <dimen name="result_margin">24dp</dimen>
     <dimen name="result_padding">8dp</dimen>
 
-
+    <integer name="result_display_duration">5000</integer>
+    <integer name="dot_count">4</integer>
+    <integer name="dot_active_index">0</integer>
 </resources>
