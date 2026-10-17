@@ -17,5 +17,13 @@
     <string name="dialog_cancel">Batal</string>
     <string name="date_format">dd/MM/yyyy</string>
 
+    <string name="result_title">Data Anda</string>
+    <string name="result_name">Nama : %1$s %2$s</string>
+    <string name="result_email">Email : %1$s</string>
+    <string name="result_birth">Tgl Lahir : %1$s</string>
+    <string name="result_experience">Experience : %1$s</string>
+    <string name="result_skill">Skill : %1$s</string>
+    <string name="skill_separator">, </string>
+
 
 </resources>
