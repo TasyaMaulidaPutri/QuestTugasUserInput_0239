@@ -5,5 +5,8 @@
    <color name="pink_light">#F8BBD9</color>
    <color name="pink_background">#FCE4EC</color>
    <color name="pink_overlay">#33E91E8C</color>
+   <color name="white">#FFFFFF</color>
+   <color name="text_primary">#212121</color>
+   <color name="text_secondary">#757575</color>
 
 </resources>
