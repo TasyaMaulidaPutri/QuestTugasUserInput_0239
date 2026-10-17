@@ -8,11 +8,18 @@
     <dimen name="card_padding">20dp</dimen>
     <dimen name="field_corner">24dp</dimen>
     <dimen name="field_gap">12dp</dimen>
-
+    <dimen name="section_gap">12dp</dimen>
     <dimen name="header_visible_height">120dp</dimen>
     <dimen name="field_text_size">14sp</dimen>
+    <dimen name="title_gap">6dp</dimen>
+    <dimen name="title_size">28sp</dimen>
+    <dimen name="subtitle_size">12sp</dimen>
+    <dimen name="label_size">14sp</dimen>
+    <dimen name="skill_text_size">12sp</dimen>
 
 
     <dimen name="card_bottom_gap">40dp</dimen>
+
+
 
 </resources>
